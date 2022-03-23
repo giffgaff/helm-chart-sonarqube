@@ -1,6 +1,137 @@
 # SonarQube Chart Changelog
 All changes to this chart will be documented in this file.
 
+## [2.0.7]
+* Specify location of .netrc file when downloading plugins that require auth
+
+## [2.0.6]
+* Specify service account name in change admin password hook
+
+## [2.0.5]
+* secure admin password in k8s secret
+
+## [2.0.4]
+* no longer automount service account token
+
+## [2.0.3]
+* changed description of dependency postgresql chart
+
+## [2.0.2]
+* changed links to get a better overview of sources
+
+## [2.0.1]
+* Updated all instances of the caCerts enabled check
+
+## [2.0.0]
+* updated SonarQube to 9.3.0
+
+## [1.6.5]
+* add securitycontext to wait-for-db and change-password hook
+
+## [1.6.4]
+* properties are now correctly set
+
+## [1.6.3]
+* `livenessProbe.failureThreshold` was never rendered
+
+## [1.6.2]
+* added missing logic for `caCerts.enabled`
+
+## [1.6.1]
+* fix missing `SONAR_WEB_SYSTEMPASSCODE` environment variable causing failed liveness checks
+
+## [1.5.1]
+* added possibility to define host of a route
+
+## [1.5.0]
+* detached sonarqube edition from version
+
+## [1.4.0]
+* added possibility to define the ingress pathType
+* added network policies
+* added possibility to define ressources for the change admin password hook
+* default permissions for prometheus injector now align with pod fs permissions
+* updated dependencies
+* admin hook now honors web context
+
+## [1.3.0]
+* added support for multiple image pull secrets
+  * added `image.pullSecrets`
+* deprecated support for singular image pull secret
+  * deprecated `image.pullSecret`
+* fixed missing image pull secret in admin hook job
+
+## [1.2.5]
+* updated SonarQube to 9.2.4
+
+## [1.2.4]
+* updated SonarQube to 9.2.3
+
+## [1.2.3]
+* updated SonarQube to 9.2.2
+
+## [1.2.2]
+* fix hardcoded reference to port 9000
+
+## [1.2.1]
+* updated SonarQube to 9.2.1
+
+## [1.2.0]
+* updated SonarQube to 9.2.0
+
+## [1.1.11]
+* fixed missing POD level security context for statefulset deployment
+
+## [1.1.10]
+* added link to community support forum
+* Use liveness endpoint instead of helth endpoint for liveness probe
+
+## [1.1.9]
+* fixed wrong scc user reference if name was explicitly set 
+
+## [1.1.8]
+* fixed serviceaccount logic
+
+## [1.1.7]
+* fixed wrong artifact hub images annotation
+
+## [1.1.6]
+* updated sonarqube to 9.1.0
+
+## [1.1.5]
+* added resources to ui-test pod template
+
+## [1.1.4]
+* fixed artifacthub annotations
+
+## [1.1.3]
+* fixed `invalid: metadata.labels: Invalid value` error on the `chart` label of the pvc
+
+## [1.1.2]
+* fixed condition check to add new certificates
+
+## [1.1.1]
+* updated default application version to 9.0.1
+* release to helm repository
+
+## [1.1.0]
+* update jdbc overwrite values
+  * replace `jdbcUrlOverride` with `jdbcOverwrite.jdbcUrl`
+  * remove useless `jdbcDatabaseType` (was always postgres)
+* deprecate `postgresql.postgresqlServer`, `postgresql.existingSecret` and `postgresql.existingSecretPasswordKey` in favor of new `jdbcOverwrite` values
+* update dependency Charts
+  * `bitnami/postgresql` from 8.6.4 to 10.4.8
+  * `ingress-nginx/ingress-nginx` from 3.29.0 to 3.31.0
+
+## [1.0.19]
+* Add optional ingress parameter `ingressClassName`
+
+## [1.0.18]
+* added route support for OpenShift deployments
+
+## [1.0.17]
+* Add an additional configuration parameter `extraContainers` to allow an array of containers to run alongside the sonarqube container
+
 ## [1.0.16]
 * fixed usage of `sonarSecretProperties`
 
@@ -22,7 +153,7 @@ All changes to this chart will be documented in this file.
 
 ## [1.0.10]
 * added prometheusExporter.noCheckCertificate option
- 
+
 ## [1.0.9]
 * add missing imagePullSecrets in sts install type
 
