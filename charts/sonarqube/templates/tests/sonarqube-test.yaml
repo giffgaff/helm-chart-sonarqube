@@ -11,6 +11,15 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
+  {{- if or .Values.image.pullSecrets .Values.image.pullSecret }}
+  imagePullSecrets:
+    {{- if .Values.image.pullSecret }}
+    - name: {{ .Values.image.pullSecret }}
+    {{- end}}
+    {{- if .Values.image.pullSecrets}}
+{{ toYaml .Values.image.pullSecrets | indent 4 }}
+    {{- end}}
+  {{- end }}
   initContainers:
     - name: "bats"
       image: "bats/bats:1.2.1"
@@ -20,6 +29,8 @@ spec:
         - |-
           set -ex
           cp -R /opt/bats /tools/bats/
+      resources:
+{{ toYaml .Values.tests.initContainers.resources | indent 8 }}
       volumeMounts:
         - mountPath: /tools
           name: tools
@@ -31,6 +42,8 @@ spec:
         "/tools/bats/bin/bats",
         "--tap",
         "/tests/run.sh"]
+      resources:
+{{ toYaml .Values.tests.resources | indent 8 }}
       volumeMounts:
       - mountPath: /tests
         name: tests
