@@ -62,6 +62,7 @@ service:
   # loadBalancerIP: 1.2.3.4
 ingress:
   enabled: false
+  ingressClassName: nginx
   # Used to create an Ingress record.
   hosts:
     - name: sonarqube.your-org.com
