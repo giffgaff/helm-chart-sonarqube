@@ -28,7 +28,8 @@ spec:
   schedulerName: {{ . }}
   {{- end }}
   {{- with (include "sonarqube.securityContext" .) }}
-  securityContext: {{- . | nindent 4 }}
+  securityContext:
+{{ . | nindent 4 }}
   {{- end }}
   {{- if or .Values.image.pullSecrets .Values.image.pullSecret }}
   imagePullSecrets:
