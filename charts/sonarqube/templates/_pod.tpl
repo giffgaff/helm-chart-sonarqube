@@ -51,7 +51,8 @@ spec:
       command: ["sh"]
       args: ["-c", "cp -f \"${JAVA_HOME}/lib/security/cacerts\" /tmp/certs/cacerts; if [ \"$(ls /tmp/secrets/ca-certs)\" ]; then for f in /tmp/secrets/ca-certs/*; do keytool -importcert -file \"${f}\" -alias \"$(basename \"${f}\")\" -keystore /tmp/certs/cacerts -storepass changeit -trustcacerts -noprompt; done; fi;"]
       {{- with (include "sonarqube.initContainerSecurityContext" .) }}
-      securityContext: {{- . | nindent 8 }}
+      securityContext:
+{{ . | nindent 8 }}
       {{- end }}
       {{- with .Values.initContainers.resources }}
       resources: {{- toYaml . | nindent 8 }}
@@ -70,7 +71,8 @@ spec:
       image: {{ default (include "sonarqube.image" $) .Values.initSysctl.image }}
       imagePullPolicy: {{ .Values.image.pullPolicy  }}
       {{- with (default (fromYaml (include "sonarqube.initContainerSecurityContext" .)) (.Values.initSysctl.securityContext )) }}
-      securityContext: {{- toYaml . | nindent 8 }}
+      securityContext:
+{{ toYaml . | nindent 8 }}
       {{- end }}
       {{- with (default .Values.initContainers.resources .Values.initSysctl.resources) }}
       resources:  {{- toYaml . | nindent 8 }}
@@ -114,7 +116,8 @@ spec:
           subPath: secret.properties
         {{- end }}
       {{- with (include "sonarqube.initContainerSecurityContext" .) }}
-      securityContext: {{- . | nindent 8 }}
+      securityContext:
+{{ . | nindent 8 }}
       {{- end }}
       {{- with .Values.initContainers.resources }}
       resources: {{- toYaml . | nindent 8 }}
@@ -127,7 +130,8 @@ spec:
       image: {{ default (include "sonarqube.image" $) .Values.prometheusExporter.image }}
       imagePullPolicy: {{ .Values.image.pullPolicy  }}
       {{- with (default (fromYaml (include "sonarqube.initContainerSecurityContext" .)) .Values.prometheusExporter.securityContext) }}
-      securityContext: {{- toYaml . | nindent 8 }}
+      securityContext:
+{{ toYaml . | nindent 8 }}
       {{- end }}
       {{- with (default .Values.initContainers.resources .Values.prometheusExporter.resources)}}
       resources: {{- toYaml . | nindent 8 }}
@@ -149,7 +153,8 @@ spec:
       image: {{ default (include "sonarqube.image" $) .Values.initFs.image }}
       imagePullPolicy: {{ .Values.image.pullPolicy  }}
       {{- with (default (fromYaml (include "sonarqube.initContainerSecurityContext" .)) .Values.initFs.securityContext) }}
-      securityContext: {{- toYaml . | nindent 8 }}
+      securityContext:
+{{ toYaml . | nindent 8 }}
       {{- end }}
       {{- with (default .Values.initContainers.resources .Values.initFs.resources) }}
       resources: {{- toYaml . | nindent 8 }}
@@ -187,7 +192,8 @@ spec:
       imagePullPolicy: {{ .Values.image.pullPolicy  }}
       command: ["sh", "-e", "/tmp/scripts/install_plugins.sh"]
       {{- with (default (fromYaml (include "sonarqube.initContainerSecurityContext" .)) .Values.plugins.securityContext) }}
-      securityContext: {{- toYaml . | nindent 8 }}
+      securityContext:
+{{ toYaml . | nindent 8 }}
       {{- end }}
       {{- with (default .Values.initContainers.resources .Values.plugins.resource) }}
       resources: {{- toYaml . | nindent 8 }}
@@ -214,7 +220,8 @@ spec:
       imagePullPolicy: {{ .Values.image.pullPolicy  }}
       command: ["sh", "-e", "/tmp/scripts/install_oracle_jdbc_driver.sh"]
       {{- with (default (fromYaml (include "sonarqube.initContainerSecurityContext" .)) .Values.initContainers.securityContext) }}
-      securityContext: {{- toYaml . | nindent 8 }}
+      securityContext:
+{{ toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.initContainers.resources }}
       resources: {{- toYaml . | nindent 8 }}
@@ -312,7 +319,8 @@ spec:
         failureThreshold: {{ .Values.startupProbe.failureThreshold }}
         timeoutSeconds: {{ .Values.startupProbe.timeoutSeconds }}
       {{- with (include "sonarqube.containerSecurityContext" .) }}
-      securityContext: {{- . | nindent 8 }}
+      securityContext:
+{{ . | nindent 8 }}
       {{- end }}
       volumeMounts:
         - mountPath: {{ .Values.sonarqubeFolder }}/data
