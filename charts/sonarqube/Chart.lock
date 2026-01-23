@@ -3,7 +3,7 @@ dependencies:
   repository: https://kedacore.github.io/charts
   version: 2.20.2
 - name: istio-virtualservice
-  version: 0.1.11
   repository: s3://giffgaff-charts
-digest: sha256:d081c2720a55151cfb472284df1e06d3210d7367a544c136f9412008ad8a452b
-generated: "2026-09-08T07:22:53.472171+08:00"
+  version: 0.1.11
+digest: sha256:3e6a728b6f8ca7264e81303b4ef7c2cc0afa392b7bc58e507e081f3e04b747b7
+generated: "2026-11-26T00:00:00.000000Z"
