@@ -46,3 +46,6 @@ dependencies:
     version: 4.12.3
     repository: https://kubernetes.github.io/ingress-nginx
     condition: nginx.enabled,ingress-nginx.enabled
+  - name: istio-virtualservice
+    version: 0.1.11
+    repository: s3://giffgaff-charts
