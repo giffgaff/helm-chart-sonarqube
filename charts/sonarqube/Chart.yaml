@@ -24,6 +24,7 @@ dependencies:
   - name: istio-virtualservice
     version: 0.1.11
     repository: s3://giffgaff-charts
+    condition: istio-virtualservice.enabled
 maintainers:
   - name: carminevassallo
     email: carmine.vassallo@sonarsource.com

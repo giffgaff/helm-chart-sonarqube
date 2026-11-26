@@ -5,5 +5,5 @@ dependencies:
 - name: istio-virtualservice
   repository: s3://giffgaff-charts
   version: 0.1.11
-digest: sha256:3e6a728b6f8ca7264e81303b4ef7c2cc0afa392b7bc58e507e081f3e04b747b7
+digest: sha256:1b4a9e1da725702e72c3709b38e69d49a568f22a7a31177369d6cf2c02f15292
 generated: "2026-11-26T00:00:00.000000Z"
